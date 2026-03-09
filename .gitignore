@@ -49,10 +49,6 @@ target/
 # Maven wrapper logs
 .mvn/wrapper/maven-wrapper.jar
 
-# Application properties (if sensitive)
-backend/src/main/resources/application.properties
-backend/src/main/resources/application.yml
-
 ############################################
 # ======= FRONTEND (React + Vite) =======
 ############################################
