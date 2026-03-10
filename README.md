@@ -1,294 +1,169 @@
-🏥 Smart Healthcare Appointment + Emergency Routing System
+# 🏥 Smart Healthcare Appointment + Emergency Routing System
 
-A full-stack intelligent healthcare platform built using Spring Boot and React that enables smart appointment booking, real-time hospital bed tracking, emergency routing, medical record storage, and AI-powered prescription scanning.
+![License](https://img.shields.io/badge/License-MIT-blue.svg)
+![JavaVersion](https://img.shields.io/badge/Java-21-orange.svg)
+![SpringBoot](https://img.shields.io/badge/Spring%20Boot-3.2.3-brightgreen.svg)
+![React](https://img.shields.io/badge/React-18-blue.svg)
 
-🚀 Problem Statement
+A full-stack, intelligent healthcare platform built using **Java 21, Spring Boot, and React**. It enables smart appointment booking, real-time hospital bed tracking, emergency routing via Google Maps, secure medical record storage on Cloudinary, and AI-powered handwritten prescription scanning using OCR.
+
+## 🚀 Problem Statement
 
 In emergency situations, patients struggle to:
+- Find hospitals with available beds
+- Book doctors quickly
+- Navigate to the nearest facility
+- Digitize handwritten prescriptions
+- Store and manage medical records securely
 
-Find hospitals with available beds
+This system solves these real-world healthcare challenges with a scalable, modern, and intelligent solution.
 
-Book doctors quickly
+---
 
-Navigate to the nearest facility
+## 🌟 Key Features
 
-Store and manage medical records
+### 🔐 1. Secure Role-Based Authentication
+- Dedicated portals for **Patients, Doctors, and Admins**.
+- Secured using **JSON Web Tokens (JWT)**.
+- Protected API routes and role-based access control.
 
-Digitize handwritten prescriptions
+### 🏥 2. Hospital & Bed Management
+- **Live tracking** of hospital bed availability.
+- Admin dashboard to update total & available beds in real-time.
+- Location coordinates (latitude & longitude) stored for emergency routing.
 
-This system solves these real-world healthcare challenges with a scalable and intelligent solution.
+### 👨‍⚕️ 3. Doctor Management
+- Admins can add doctors by specialization and assign them to hospitals.
+- Patients can filter doctors by expertise and view their availability slots.
 
-🌟 Key Features
-🔐 1. Secure Authentication
+### 📅 4. Appointment Booking System
+- Seamlessly book or cancel appointments.
+- Real-time appointment status tracking.
+- View comprehensive appointment history.
 
-Role-based login (Patient / Doctor / Admin)
+### 🚑 5. Emergency Routing System
+- Accurately detects user location.
+- Calculates the **nearest hospital with available beds** using the **Haversine Formula**.
+- Visualizes the optimized route directly on **Google Maps**.
 
-JWT-based authentication
+### 📁 6. Medical Record Storage
+- Secure cloud storage for medical reports using **Cloudinary**.
+- Patients can upload and maintain a complete medical history.
 
-Protected routes & API security
+### 🧠 7. AI-Powered Prescription Scanner
+- Upload images of handwritten prescriptions.
+- Extracts text automatically using **Tesseract OCR (Tess4J)**.
+- Extracted prescription data is stored securely in the database.
 
-🏥 2. Hospital & Bed Management
+---
 
-Live hospital bed availability
+## 🛠 Tech Stack
 
-Admin can update total & available beds
+### 🔙 Backend
+- **Java 21**, **Spring Boot 3.2.3**
+- **Spring Security** & **JJWT 0.11.5** (Authentication & Authorization)
+- **Spring Data JPA** & **Hibernate** (ORM)
+- **MySQL** (Database)
+- **Tess4J** (Tesseract OCR for Java)
+- **Cloudinary HTTP44** (Cloud Storage)
+- **Spring Dotenv** (Environment Variable Management)
 
-Location stored using latitude & longitude
+### 🎨 Frontend
+- **React 18** (Vite ^5.2.0)
+- **React Router DOM** (Routing)
+- **Tailwind CSS v4** & **Material UI** (Styling & Components)
+- **Axios** (API Requests)
+- **Lucide React** (Icons)
+- **React Toastify** (Notifications)
 
-Real-time bed tracking
+---
 
-👨‍⚕️ 3. Doctor Management
+## 🏗 Architecture
 
-Add doctors by specialization
+The backend follows a clean, industry-standard **Layered Architecture**:
 
-Assign doctors to hospitals
-
-Manage availability slots
-
-Filter doctors by expertise
-
-📅 4. Appointment Booking System
-
-View available doctors
-
-Book / Cancel appointments
-
-View appointment history
-
-Appointment status tracking
-
-🚑 5. Emergency Routing System
-
-Detect user location
-
-Calculate nearest hospital with available beds
-
-Route visualization using Google Maps
-
-Optimized nearest-hospital algorithm (Haversine Formula)
-
-📁 6. Medical Record Storage
-
-Upload medical reports
-
-Secure cloud file storage
-
-Maintain patient record history
-
-🧠 7. AI-Powered Prescription Scanner
-
-Upload handwritten prescription image
-
-OCR text extraction using Tesseract
-
-Store extracted prescription data in database
-
-🛠 Tech Stack
-🔙 Backend
-
-Java 21
-
-Spring Boot
-
-Spring Security (JWT)
-
-Spring Data JPA (Hibernate)
-
-MySQL
-
-Maven
-
-🎨 Frontend
-
-React (Vite)
-
-Axios
-
-React Router
-
-Material UI / Tailwind CSS
-
-☁️ Integrations
-
-Google Maps API
-
-Cloudinary (File Storage)
-
-Tesseract OCR (Prescription Scanning)
-
-🏗 Architecture
-
-The backend follows a clean layered architecture:
-
-Controller
+```
+Controller (API Endpoints)
    ↓
-Service
+Service (Business Logic)
    ↓
-Repository
+Repository (Data Access Layer)
    ↓
-Database
+Database (MySQL)
+```
 
+**Includes:**
+- DTO (Data Transfer Object) layer for secure responses using ModelMapper.
+- Global Exception Handling using `@ControllerAdvice`.
+- Adherence to clean code and SOLID principles.
 
-Includes:
+---
 
-DTO layer
+## 📸 System Flow
 
-Global Exception Handling
+1. Patient/Doctor registers and logs in securely.
+2. Patient searches for a doctor and books an appointment.
+3. Doctor/Admin manages operations.
+4. **Emergency:** Patient clicks the emergency button → System finds nearest hospital → Route is displayed on Google Maps.
+5. Patient uploads a handwritten prescription → OCR digitizes it → Saved to Medical Records.
 
-Role-based Authorization
+---
 
-Clean code principles
+## ⚡ Installation Guide
 
-🗂 Database Schema
-User
+### Prerequisites
+- JDK 21
+- Node.js & npm
+- MySQL Server
+- Tesseract OCR installed on your system
+- Cloudinary Account
+- Google Maps API Key
 
-id
-
-name
-
-email
-
-password
-
-role (PATIENT / DOCTOR / ADMIN)
-
-Hospital
-
-id
-
-name
-
-location
-
-latitude
-
-longitude
-
-totalBeds
-
-availableBeds
-
-Doctor
-
-id
-
-name
-
-specialization
-
-hospital_id
-
-Appointment
-
-id
-
-patient_id
-
-doctor_id
-
-date
-
-time
-
-status
-
-MedicalRecord
-
-id
-
-patient_id
-
-fileUrl
-
-extractedText
-
-uploadDate
-
-📸 System Flow
-
-User registers/logs in
-
-Patient books appointment
-
-Admin manages hospitals & bed availability
-
-Emergency button finds nearest hospital
-
-Route displayed on map
-
-Prescription scanned & digitized
-
-Medical history stored securely
-
-⚡ Installation Guide
-Backend Setup
+### 1️⃣ Backend Setup
+```bash
 git clone <repo-url>
 cd backend
 mvn clean install
+```
+
+Create a `.env` file in the `backend/` directory root and add the following properties:
+```env
+DB_URL=jdbc:mysql://localhost:3306/smart_healthcare
+DB_USERNAME=root
+DB_PASSWORD=your_db_password
+JWT_SECRET=YourSuperSecretKeyForJWTThatIsLongEnough
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+```
+
+Run the application:
+```bash
 mvn spring-boot:run
+```
 
-
-Configure application.properties:
-
-spring.datasource.url=jdbc:mysql://localhost:3306/healthcare_db
-spring.datasource.username=root
-spring.datasource.password=yourpassword
-jwt.secret=yourSecretKey
-
-Frontend Setup
+### 2️⃣ Frontend Setup
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
-🌍 Deployment
+---
 
-Backend → Railway / Render
+## 📊 Why This Project Stands Out
 
-Frontend → Netlify / Vercel
+- ✔ **Solves a Real-World Healthcare Problem**
+- ✔ **Emergency Optimization Algorithms** (Haversine Formula)
+- ✔ **AI Integration** (Tesseract OCR)
+- ✔ **Cloud Storage Integration** (Cloudinary)
+- ✔ **Modern Full-Stack Paradigm** (Java 21 / React 18 / Tailwind v4)
 
-Use environment variables for:
+---
 
-JWT secret
+## 👨‍💻 Author
 
-Database credentials
-
-Google Maps API key
-
-Cloudinary credentials
-
-📊 Why This Project Stands Out
-
-✔ Real-world healthcare problem
-✔ Emergency optimization algorithm
-✔ AI-powered OCR integration
-✔ Secure JWT authentication
-✔ Role-based access control
-✔ Scalable architecture
-✔ Cloud deployment ready
-
-This is not just a CRUD app — it is a real-world intelligent healthcare system.
-
-🎯 Future Enhancements
-
-AI Symptom Checker
-
-SMS notifications for appointments
-
-Email reminders
-
-Hospital load prediction
-
-Payment integration
-
-Microservices architecture
-
-Docker containerization
-
-👨‍💻 Author
-
-Rahul Yadav
+**Rahul Yadav**  
 Java Full Stack Developer | Aspiring AI Engineer
 
-⭐ If You Like This Project
-
-Give it a ⭐ on GitHub and feel free to contribute!
+⭐ If you found this project helpful, give it a **⭐ on GitHub**!
